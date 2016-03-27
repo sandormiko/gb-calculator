@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://ws.calculator.gb.com/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.calculator.gb.com/">
+
+	<xsd:complexType name="Calculation">
+		<xsd:sequence>
+			<xsd:element name="vatRate" type="xsd:string" />
+			<xsd:element name="priceWithVat" type="xsd:string" />
+			<xsd:element name="priceWOVat" type="xsd:string" />
+			<xsd:element name="valueAddedTax" type="xsd:string" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<!-- xsd:simpleType name="VatRate"> <xsd:restriction base="xsd:int"> <xsd:enumeration 
+		value="10" /> <xsd:enumeration value="12" /> <xsd:enumeration value="13" 
+		/> <xsd:enumeration value="20" /> </xsd:restriction> </xsd:simpleType -->
+	<xsd:element name="CalculationRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Calculation" type="tns:Calculation" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="CalculationResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Calculation" type="tns:Calculation" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="CalculatorFault">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="faultCode" type="xsd:string" nillable="true" />
+				<xsd:element name="faultMessage" type="xsd:string" />
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema> 	

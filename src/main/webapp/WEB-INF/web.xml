@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+	<display-name>GBCalculator</display-name>
+
+	<servlet>
+
+		<servlet-name>calculator-ws</servlet-name>
+
+		<servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+                /WEB-INF/calculator-ws-servlet.xml
+            </param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>calculator-ws</servlet-name>
+		<url-pattern>/calculator-ws</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>calculator-ws</servlet-name>
+		<url-pattern>*.wsdl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>calculator-ws</servlet-name>
+		<url-pattern>*.xsd</url-pattern>
+	</servlet-mapping>
+
+</web-app>
