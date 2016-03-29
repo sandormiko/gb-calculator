@@ -8,15 +8,18 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<spring.version>4.2.1.RELEASE</spring.version>
-		<spring.jaxws.version>1.9</spring.jaxws.version>
+		<spring.ws.core.version>2.2.4.RELEASE</spring.ws.core.version>
 		<junit.version>4.12</junit.version>
 		<jaxws.rt.version>2.2.8</jaxws.rt.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.7</java.version>
 		<commons.lang.version>3.4</commons.lang.version>
+		<jackson.core.version>2.4.1</jackson.core.version>
+		<jackson.mapper.asl.version>1.9.13</jackson.mapper.asl.version>
+		<jackson.core.asl.version>1.9.13</jackson.core.asl.version>
+		<jackson.databind.version>2.4.1.1</jackson.databind.version>
 	</properties>
 	<dependencies>
-		
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -37,28 +40,43 @@
 			<version>${spring.version}</version>
 		</dependency>
 
-		<!-- JAX-WS dependencies -->
 		<dependency>
-			<groupId>org.jvnet.jax-ws-commons.spring</groupId>
-			<artifactId>jaxws-spring</artifactId>
-			<version>${spring.jaxws.version}</version>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-core</artifactId>
+			<version>${spring.ws.core.version}</version>
 		</dependency>
 
-    <dependency>
-        <groupId>org.springframework.ws</groupId>
-        <artifactId>spring-ws-core</artifactId>
-        <version>2.2.4.RELEASE</version>
-    </dependency>
-
-		<dependency>
-			<groupId>com.sun.xml.ws</groupId>
-			<artifactId>jaxws-rt</artifactId>
-			<version>${jaxws.rt.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>${commons.lang.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>${jackson.core.asl.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.mapper.asl.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.databind.version}</version>
 		</dependency>
 	</dependencies>
 	<build>

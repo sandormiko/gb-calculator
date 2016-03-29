@@ -6,8 +6,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gb.calculator.business.dto.Calculation;
-import com.gb.calculator.business.dto.ValidatableCalculation;
+import com.gb.calculator.business.dto.CalculationResult;
+import com.gb.calculator.business.dto.CalculationValidorInput;
 import com.gb.calculator.business.exception.CalculatorBusinessException;
 import com.gb.calculator.business.service.CalculatorServiceBean;
 import com.gb.calculator.business.validation.CalculationValidationResult;
@@ -26,7 +26,7 @@ public class CalculatorBusinessFacade {
 		this.validator = aValidator;
 	}
 	
-	public Calculation validateAndProcess(ValidatableCalculation calc) throws CalculatorBusinessException{
+	public CalculationResult validateAndProcess(CalculationValidorInput calc) throws CalculatorBusinessException{
 		
 		CalculationValidationResult valRes = validator.validate(calc);
 		if(!valRes.isValid()){
@@ -34,14 +34,14 @@ public class CalculatorBusinessFacade {
 			String message = StringUtils.join(feedbackMessages, "\n");
 			throw new CalculatorBusinessException(message);
 		}
-		Calculation calculationInp = convert(calc);
-		Calculation calculationResult = serviceBean.calculate(calculationInp);
+		CalculationResult calculationInp = convert(calc);
+		CalculationResult calculationResult = serviceBean.calculate(calculationInp);
 		return calculationResult;
 	}
 	
-	private Calculation convert(ValidatableCalculation calc){
+	private CalculationResult convert(CalculationValidorInput calc){
 		
-		Calculation result = new Calculation();
+		CalculationResult result = new CalculationResult();
 		if(!StringUtils.isEmpty(calc.getPriceInclVat())){
 			result.setPriceInclVat(Double.valueOf(calc.getPriceInclVat()));
 		}

@@ -10,9 +10,6 @@
 			<xsd:element name="valueAddedTax" type="xsd:string" />
 		</xsd:sequence>
 	</xsd:complexType>
-	<!-- xsd:simpleType name="VatRate"> <xsd:restriction base="xsd:int"> <xsd:enumeration 
-		value="10" /> <xsd:enumeration value="12" /> <xsd:enumeration value="13" 
-		/> <xsd:enumeration value="20" /> </xsd:restriction> </xsd:simpleType -->
 	<xsd:element name="CalculationRequest">
 		<xsd:complexType>
 			<xsd:sequence>

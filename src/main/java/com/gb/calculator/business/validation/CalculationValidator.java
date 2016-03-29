@@ -4,13 +4,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.springframework.stereotype.Component;
 
-import com.gb.calculator.business.dto.ValidatableCalculation;
+import com.gb.calculator.business.dto.CalculationValidorInput;
 import com.gb.calculator.business.resources.CalculatorMessageResources;
 
 @Component
 public class CalculationValidator {
 
-	public CalculationValidationResult validate(ValidatableCalculation calculation){
+	public CalculationValidationResult validate(CalculationValidorInput calculation){
 		CalculationValidationResult result = new CalculationValidationResult();
 		
 		String feedbackMsg = validateVatRate(calculation);
@@ -24,7 +24,7 @@ public class CalculationValidator {
 		return result;
 	}
 	
-	private String validateVatRate(ValidatableCalculation calculation){
+	private String validateVatRate(CalculationValidorInput calculation){
 		String vatRate = calculation.getVatRate();
 		String feedBackMessage = null;
 		if(!StringUtils.isNumeric(vatRate)){
@@ -38,7 +38,7 @@ public class CalculationValidator {
 		
 	}
 	
-	private String validateAmounts(ValidatableCalculation calculation){
+	private String validateAmounts(CalculationValidorInput calculation){
 		String feedBackMessage = null;
 		String priceIncVat = calculation.getPriceInclVat();
 		String priceWoVat = calculation.getPriceWoVat();
@@ -67,7 +67,7 @@ public class CalculationValidator {
 		
 	}
 	
-	private String checkOnlyOneAmountIsGiven(ValidatableCalculation calculation){
+	private String checkOnlyOneAmountIsGiven(CalculationValidorInput calculation){
 		String feedBackMessage = null;
 		String priceIncVat = calculation.getPriceInclVat();
 		String priceWoVat = calculation.getPriceWoVat();

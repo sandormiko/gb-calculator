@@ -6,8 +6,8 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import com.gb.calculator.business.dto.Calculation;
-import com.gb.calculator.business.dto.ValidatableCalculation;
+import com.gb.calculator.business.dto.CalculationResult;
+import com.gb.calculator.business.dto.CalculationValidorInput;
 import com.gb.calculator.business.exception.CalculatorBusinessException;
 import com.gb.calculator.business.service.facade.CalculatorBusinessFacade;
 
@@ -25,9 +25,9 @@ public class CalculatorWsEndPoint {
 	public @ResponsePayload CalculationResponse  getCalculation(@RequestPayload CalculationRequest cRequest) throws CalculatorFault_Exception{
 		CalculationResponse resp = null;
 		try{
-			com.gb.calculator.ws.Calculation request = cRequest.getCalculation();
-			ValidatableCalculation toValidate = new ValidatableCalculation(request.getValueAddedTax(), request.getVatRate(), request.getPriceWOVat(), request.getPriceWithVat());
-			Calculation result = facade.validateAndProcess(toValidate);
+			Calculation request = cRequest.getCalculation();
+			CalculationValidorInput toValidate = new CalculationValidorInput(request.getValueAddedTax(), request.getVatRate(), request.getPriceWOVat(), request.getPriceWithVat());
+			CalculationResult result = facade.validateAndProcess(toValidate);
 			resp = prerareResponse(result);
 			
 			}catch(CalculatorBusinessException ex){
@@ -44,7 +44,7 @@ public class CalculatorWsEndPoint {
 	}
 		
 	
-	private CalculationResponse prerareResponse(Calculation result) {
+	private CalculationResponse prerareResponse(CalculationResult result) {
 		CalculationResponse resp = new CalculationResponse();
 		com.gb.calculator.ws.Calculation calculation = new com.gb.calculator.ws.Calculation();
 		calculation.setPriceWithVat(String.valueOf(result.getPriceInclVat()));

@@ -2,7 +2,7 @@ package com.gb.calculator.business.resources;
 
 public class CalculatorMessageResources {
 
-	public static final String VAT_RATE_NOT_NUMERIC ="Vat rate is ot numeric";
+	public static final String VAT_RATE_NOT_NUMERIC ="Vat rate is not numeric";
 	public static final String VAT_RATE_ZERO = "Vat rate must be greater than 0";
 	public static final String PRINCE_INC_VAT_NOT_NUMERIC = "Price incl Vat is not numeric";
 	public static final String PRINCE_WO_VAT_NOT_NUMERIC = "Price without Vat is not numeric";

@@ -5,14 +5,14 @@ import java.math.RoundingMode;
 
 import org.springframework.stereotype.Service;
 
-import com.gb.calculator.business.dto.Calculation;
+import com.gb.calculator.business.dto.CalculationResult;
 
 @Service
 public class CalculatorServiceBean {
 	
-	public Calculation calculate(Calculation calculation){
+	public CalculationResult calculate(CalculationResult calculation){
 		
-		Calculation result = new Calculation();
+		CalculationResult result = new CalculationResult();
 		Double vatRate = calculation.getVatRate();
 		Double priceInclVat = calculation.getPriceInclVat();
 		Double priceWoVat = calculation.getPriceWoVat();

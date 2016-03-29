@@ -1,6 +1,6 @@
 package com.gb.calculator.business.dto;
 
-public class ValidatableCalculation {
+public class CalculationValidorInput {
 
 	private String valueAddedTax;
 	private String vatRate;
@@ -16,11 +16,11 @@ public class ValidatableCalculation {
 	public String getVatRate() {
 		return vatRate;
 	}
-	public ValidatableCalculation(){
+	public CalculationValidorInput(){
 		
 	}
 	
-	public ValidatableCalculation(String valueAddedTax, String vatRate, String priceWoVat, String priceInclVat) {
+	public CalculationValidorInput(String valueAddedTax, String vatRate, String priceWoVat, String priceInclVat) {
 		super();
 		this.valueAddedTax = valueAddedTax;
 		this.vatRate = vatRate;

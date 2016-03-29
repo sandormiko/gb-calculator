@@ -4,9 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.gb.calculator.business.dto.ValidatableCalculation;
-
-
+import com.gb.calculator.business.dto.CalculationValidorInput;
 
 public class CalculationValidatorTest {
 
@@ -20,7 +18,7 @@ public class CalculationValidatorTest {
 	
 	@Test
 	public void shouldPassForValidInputs(){
-		ValidatableCalculation calculation = new ValidatableCalculation();
+		CalculationValidorInput calculation = new CalculationValidorInput();
 		calculation.setVatRate("10");
 		calculation.setPriceWoVat("100");
 		CalculationValidationResult res = validator.validate(calculation);
@@ -29,7 +27,7 @@ public class CalculationValidatorTest {
 	
 	@Test
 	public void shouldFailForNotNumericAmount(){
-		ValidatableCalculation calculation = new ValidatableCalculation();
+		CalculationValidorInput calculation = new CalculationValidorInput();
 		calculation.setVatRate("10");
 		calculation.setPriceWoVat("A");
 		CalculationValidationResult res = validator.validate(calculation);
@@ -38,7 +36,7 @@ public class CalculationValidatorTest {
 	
 	@Test
 	public void shouldFailForZeroAmount(){
-		ValidatableCalculation calculation = new ValidatableCalculation();
+		CalculationValidorInput calculation = new CalculationValidorInput();
 		calculation.setVatRate("10");
 		calculation.setPriceWoVat("0");
 		CalculationValidationResult res = validator.validate(calculation);
@@ -47,7 +45,7 @@ public class CalculationValidatorTest {
 	
 	@Test
 	public void shouldFailForBothAmountsGiven(){
-		ValidatableCalculation calculation = new ValidatableCalculation();
+		CalculationValidorInput calculation = new CalculationValidorInput();
 		calculation.setVatRate("10");
 		calculation.setPriceWoVat("10");
 		calculation.setPriceInclVat("10");

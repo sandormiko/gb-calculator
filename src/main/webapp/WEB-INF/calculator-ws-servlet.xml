@@ -9,17 +9,18 @@
        http://www.springframework.org/schema/web-services
         http://www.springframework.org/schema/web-services/web-services.xsd">
 
-	<context:component-scan base-package="com.gb.calculator" />
+	<context:component-scan base-package="com.gb.calculator.ws,com.gb.calculator.business" />
 	<sws:annotation-driven />
 
 	<sws:static-wsdl id="calculator" location="classpath:wsdl/Calculator.wsdl" />
-	
-	<bean id="Calculation" class="org.springframework.xml.xsd.SimpleXsdSchema">
-		<property name="xsd" value="classpath:wsdl/Calculation.xsd">
+
+	<bean id="Types" class="org.springframework.xml.xsd.SimpleXsdSchema">
+		<property name="xsd" value="classpath:wsdl/Types.xsd">
 		</property>
 	</bean>
 
-<bean id="soapFaultAnnotationExceptionResolver" class="com.gb.calculator.ws.fault.CalculatorSoapFaultMappingExceptionResolver">
-<property name="order" value="1"></property>
-</bean>
+	<bean id="soapFaultAnnotationExceptionResolver"
+		class="com.gb.calculator.ws.fault.CalculatorSoapFaultMappingExceptionResolver">
+		<property name="order" value="1"></property>
+	</bean>
 </beans>
