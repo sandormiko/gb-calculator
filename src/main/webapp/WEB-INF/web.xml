@@ -8,9 +8,7 @@
 	<display-name>GBCalculator</display-name>
 
 	<servlet>
-
 		<servlet-name>calculator-ws</servlet-name>
-
 		<servlet-class>org.springframework.ws.transport.http.MessageDispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>

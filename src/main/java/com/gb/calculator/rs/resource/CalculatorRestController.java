@@ -21,30 +21,32 @@ import com.gb.calculator.rs.exception.CalculatorRsException;
 @RestController
 public class CalculatorRestController {
 
-private CalculatorBusinessFacade facade;
-	
+	private CalculatorBusinessFacade facade;
+
 	@Autowired
-	public CalculatorRestController(CalculatorBusinessFacade aFacade){
-		this.facade =  aFacade;
+	public CalculatorRestController(CalculatorBusinessFacade aFacade) {
+		this.facade = aFacade;
 	}
-	@RequestMapping(value = "/calculations/", method = RequestMethod.GET,produces="application/json")
-    public ResponseEntity<CalculationResult> calculate(CalculationValidorInput input) {
+
+	@RequestMapping(value = "/calculations/", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity<CalculationResult> calculate(CalculationValidorInput input) {
 		CalculationResult result = null;
-		try{
+		try {
 			result = facade.validateAndProcess(input);
-		
-		}catch(CalculatorBusinessException ex){
+
+		} catch (CalculatorBusinessException ex) {
 			throw new CalculatorRsException(ex.getMessage());
 		}
 		return new ResponseEntity<CalculationResult>(result, HttpStatus.OK);
-    }
-	
+	}
+
 	@ExceptionHandler(CalculatorRsException.class)
-    @ResponseBody
-    public ResponseEntity<BadRequest> handleTypeMismatchException(HttpServletRequest request, CalculatorRsException ex) {
-       StringBuilder uri = new StringBuilder(request.getRequestURL().toString());
-       uri.append(request.getQueryString());
-       BadRequest bRequest = new BadRequest(uri.toString(), ex.getMessage()); 
-       return new ResponseEntity<BadRequest>(bRequest, HttpStatus.BAD_REQUEST);
-    }
+	@ResponseBody
+	public ResponseEntity<BadRequest> handleTypeMismatchException(HttpServletRequest request,
+			CalculatorRsException ex) {
+		StringBuilder uri = new StringBuilder(request.getRequestURL().toString());
+		uri.append(request.getQueryString());
+		BadRequest bRequest = new BadRequest(uri.toString(), ex.getMessage());
+		return new ResponseEntity<BadRequest>(bRequest, HttpStatus.BAD_REQUEST);
+	}
 }

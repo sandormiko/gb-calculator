@@ -15,35 +15,36 @@ import com.gb.calculator.business.service.facade.CalculatorBusinessFacade;
 public class CalculatorWsEndPoint {
 
 	private CalculatorBusinessFacade facade;
-	
+
 	@Autowired
-	public CalculatorWsEndPoint(CalculatorBusinessFacade aFacade){
-		this.facade =  aFacade;
+	public CalculatorWsEndPoint(CalculatorBusinessFacade aFacade) {
+		this.facade = aFacade;
 	}
-	
-	@PayloadRoot(localPart="CalculationRequest", namespace="http://ws.calculator.gb.com/")
-	public @ResponsePayload CalculationResponse  getCalculation(@RequestPayload CalculationRequest cRequest) throws CalculatorFault_Exception{
+
+	@PayloadRoot(localPart = "CalculationRequest", namespace = "http://ws.calculator.gb.com/")
+	public @ResponsePayload CalculationResponse getCalculation(@RequestPayload CalculationRequest cRequest)
+			throws CalculatorFault_Exception {
 		CalculationResponse resp = null;
-		try{
+		try {
 			Calculation request = cRequest.getCalculation();
-			CalculationValidorInput toValidate = new CalculationValidorInput(request.getValueAddedTax(), request.getVatRate(), request.getPriceWOVat(), request.getPriceWithVat());
+			CalculationValidorInput toValidate = new CalculationValidorInput(request.getValueAddedTax(),
+					request.getVatRate(), request.getPriceWOVat(), request.getPriceWithVat());
 			CalculationResult result = facade.validateAndProcess(toValidate);
 			resp = prerareResponse(result);
-			
-			}catch(CalculatorBusinessException ex){
-				handleBusinessException(ex);
-			}
-		return resp;
+
+		} catch (CalculatorBusinessException ex) {
+			handleBusinessException(ex);
 		}
+		return resp;
+	}
 
 	private void handleBusinessException(CalculatorBusinessException ex) throws CalculatorFault_Exception {
 		CalculatorFault f = new CalculatorFault();
 		f.setFaultCode("INVALID_INPUT");
 		f.setFaultMessage(ex.getMessage());
-		throw new CalculatorFault_Exception(ex.getMessage(),f);
+		throw new CalculatorFault_Exception(ex.getMessage(), f);
 	}
-		
-	
+
 	private CalculationResponse prerareResponse(CalculationResult result) {
 		CalculationResponse resp = new CalculationResponse();
 		com.gb.calculator.ws.Calculation calculation = new com.gb.calculator.ws.Calculation();
