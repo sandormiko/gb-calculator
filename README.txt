@@ -17,7 +17,7 @@ Distribution
 	1.1 The Soap service is exposed to the following url:
 		http://<host>:<port>/GBCalculator/calculator-ws/calculator
 
-	1.2. The WSDL and xsd file is published at the following location:
+	1.2. The WSDL and xsd file are published at the following location:
 		http://<host>:<port>/GBCalculator/calculator-ws/calculator.wsdl
 		http://<host>:<port>/GBCalculator/calculator-ws/Types.xsd
 
