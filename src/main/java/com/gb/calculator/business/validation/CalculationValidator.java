@@ -27,7 +27,9 @@ public class CalculationValidator {
 	private String validateVatRate(CalculationValidorInput calculation) {
 		String vatRate = calculation.getVatRate();
 		String feedBackMessage = null;
-		if (!StringUtils.isNumeric(vatRate)) {
+		if(StringUtils.isEmpty(vatRate)){
+			feedBackMessage = CalculatorMessageResources.VAT_RATE_IS_MISSING;
+		}else if (!NumberUtils.isNumber(vatRate)) {
 			feedBackMessage = CalculatorMessageResources.VAT_RATE_NOT_NUMERIC;
 
 		} else if (Integer.valueOf(vatRate) <= 0) {

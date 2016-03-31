@@ -1,6 +1,6 @@
 package com.gb.calculator.business.dto;
 
-public class CalculationResult {
+public class CalculationData {
 
 	private Double valueAddedTax;
 	private Double vatRate;

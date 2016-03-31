@@ -8,10 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gb.calculator.business.dto.CalculationResult;
+import com.gb.calculator.business.dto.CalculationData;
 import com.gb.calculator.business.dto.CalculationValidorInput;
 import com.gb.calculator.business.exception.CalculatorBusinessException;
 import com.gb.calculator.business.service.facade.CalculatorBusinessFacade;
@@ -29,20 +28,19 @@ public class CalculatorRestController {
 	}
 
 	@RequestMapping(value = "/calculations/", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<CalculationResult> calculate(CalculationValidorInput input) {
-		CalculationResult result = null;
+	public ResponseEntity<CalculationData> calculate(CalculationValidorInput input) {
+		CalculationData result = null;
 		try {
 			result = facade.validateAndProcess(input);
 
 		} catch (CalculatorBusinessException ex) {
 			throw new CalculatorRsException(ex.getMessage());
 		}
-		return new ResponseEntity<CalculationResult>(result, HttpStatus.OK);
+		return new ResponseEntity<CalculationData>(result, HttpStatus.OK);
 	}
 
 	@ExceptionHandler(CalculatorRsException.class)
-	@ResponseBody
-	public ResponseEntity<BadRequest> handleTypeMismatchException(HttpServletRequest request,
+	public ResponseEntity<BadRequest> handleCalculatorRsException(HttpServletRequest request,
 			CalculatorRsException ex) {
 		StringBuilder uri = new StringBuilder(request.getRequestURL().toString());
 		uri.append(request.getQueryString());
