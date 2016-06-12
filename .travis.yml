@@ -1,12 +1,11 @@
 language: java
 script: mvn clean verify
 addons:
-ssh_known_hosts:
-- jupat-sandormiko.rhcloud.com
-- 54.175.88.114
+	ssh_known_hosts:jupat-sandormiko.rhcloud.com
+
 after_success:
 - chmod 600 ~/.ssh/id_rsa
-- eval "$(ssh-agent)"
+- eval "$(ssh-agent -s)"
 - ssh-add
 - export SSHPASS=$DEPLOY_PASS
 - scp /home/travis/build/sandomiko/gb-calculator/target/GBCalculator.war $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
