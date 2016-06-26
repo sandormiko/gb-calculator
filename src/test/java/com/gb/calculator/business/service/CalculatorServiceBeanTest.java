@@ -1,11 +1,12 @@
 package com.gb.calculator.business.service;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import com.gb.calculator.business.dto.CalculationData;
+import static org.hamcrest.core.IsEqual.equalTo;
 
-import org.junit.Assert;
 
 public class CalculatorServiceBeanTest {
 
@@ -22,8 +23,8 @@ public class CalculatorServiceBeanTest {
 		input.setValueAddedTax(new Double(10));
 		input.setVatRate(new Double(20));
 		CalculationData result = calcBean.calculate(input);
-		Assert.assertEquals(new Double(60),result.getPriceInclVat());
-		Assert.assertEquals(new Double(50),result.getPriceWoVat());
+		Assert.assertThat(result.getPriceInclVat(), equalTo(new Double(60)));
+		Assert.assertThat(result.getPriceWoVat(),equalTo(new Double(50)));
 	}
 	
 	@Test
@@ -32,8 +33,8 @@ public class CalculatorServiceBeanTest {
 		input.setPriceWoVat(new Double(50));
 		input.setVatRate(new Double(20));
 		CalculationData result = calcBean.calculate(input);
-		Assert.assertEquals(new Double(60),result.getPriceInclVat());
-		Assert.assertEquals(new Double(10),result.getValueAddedTax());
+		Assert.assertThat(result.getPriceInclVat(),equalTo(new Double(60)));
+		Assert.assertThat(result.getValueAddedTax(),equalTo(new Double(10)));
 	}
 	
 	@Test
@@ -42,8 +43,8 @@ public class CalculatorServiceBeanTest {
 		input.setPriceInclVat(new Double(60));
 		input.setVatRate(new Double(20));
 		CalculationData result = calcBean.calculate(input);
-		Assert.assertEquals(new Double(50),result.getPriceWoVat());
-		Assert.assertEquals(new Double(10),result.getValueAddedTax());
+		Assert.assertThat(result.getPriceWoVat(),equalTo(new Double(50)));
+		Assert.assertThat(result.getValueAddedTax(),equalTo(new Double(10)));
 	}
 	
 	@Test
@@ -52,8 +53,8 @@ public class CalculatorServiceBeanTest {
 		input.setPriceInclVat(new Double(60));
 		input.setVatRate(new Double(12));
 		CalculationData result = calcBean.calculate(input);
-		Assert.assertEquals(new Double(53.57),result.getPriceWoVat());
-		Assert.assertEquals(new Double(6.43),result.getValueAddedTax());
+		Assert.assertThat(result.getPriceWoVat(),equalTo(new Double(53.57)));
+		Assert.assertThat(result.getValueAddedTax(),equalTo(new Double(6.43)));
 	}
 	
 	

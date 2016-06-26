@@ -18,6 +18,7 @@
 		<jackson.mapper.asl.version>1.9.13</jackson.mapper.asl.version>
 		<jackson.core.asl.version>1.9.13</jackson.core.asl.version>
 		<jackson.databind.version>2.4.1.1</jackson.databind.version>
+		<hamcrest.all.version>1.3</hamcrest.all.version>
 	</properties>
 	<dependencies>
 
@@ -77,6 +78,12 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.databind.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>${hamcrest.all.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>
