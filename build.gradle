@@ -2,13 +2,19 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
 apply plugin: 'war'
-
+apply plugin: "de.richsource.gradle.plugins.typescript"
 buildscript {
 	    repositories {
+	     mavenLocal()
 	        mavenCentral()
+	        maven {
+      url "https://plugins.gradle.org/m2/"
+    }
 	    }
+	   
 	    dependencies {
 	        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.2.RELEASE")
+	        classpath "de.richsource.gradle.plugins:typescript-gradle-plugin:1.8.0"
 
 	    }
 
@@ -71,5 +77,11 @@ task wsimport {
 compileJava {
     dependsOn wsimport
     source wsimport.destDir
+}
+compileTypeScript {
+	source = new File('src/main/webapp/ts')
+	outputDir = new File('src/main/webapp/ts')
+	noEmitOnError = true
+	
 }
 
