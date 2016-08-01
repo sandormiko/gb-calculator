@@ -5,5 +5,5 @@ class Greeter {
     }
 };
 
-var greeter = new Greeter(2);
+var greeter = new Greeter("Hello");
 
