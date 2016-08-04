@@ -87,6 +87,8 @@ import com.moowork.gradle.node.variant.VariantBuilder
 
 node {
   download = true
+  workDir = file("${project.projectDir}/src/main/webapp/node")
+  nodeModulesDir = file("${project.projectDir}/src/main/webapp")
 }
 
 String nodeExecutable() {
@@ -95,13 +97,18 @@ String nodeExecutable() {
 }
 
 compileTypeScript {
-  compilerExecutable "${nodeExecutable()} node_modules/typescript/lib/tsc.js"
-  dependsOn "npmInstall"
-  	source = new File('src/main/webapp/ts')
-	outputDir = new File('src/main/webapp/ts')
+  compilerExecutable "${nodeExecutable()} src/main/webapp/node_modules/typescript/lib/tsc.js"
+  	dependsOn "npmInstall"
+  	projectFile = file('src/main/webapp/tsconfig.json')
 	noEmitOnError = true
+	source = new File('src/main/webapp')
+	}
+task npmClean(type: Delete) {
+	final def webDir = "${rootDir}/src/main/webapp"
+	delete "${webDir}/node"
+	delete "${webDir}/node_modules"
+	delete "${webDir}/typings"
 }
-
 
 war {
      dependsOn 'compileTypeScript'
