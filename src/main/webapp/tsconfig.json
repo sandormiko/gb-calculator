@@ -7,8 +7,7 @@
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "removeComments": false,
-      "noImplicitAny": false,
-      "outDir": "build/generated-web-resources/static/app/"
+      "noImplicitAny": false
   },
 
   "exclude": [

@@ -5,5 +5,6 @@ class Greeter {
     }
 };
 
-var greeter = new Greeter("2");
+let greeter = new Greeter("2");
+greeter.greet();
 

@@ -102,6 +102,7 @@ compileTypeScript {
   	projectFile = file('src/main/webapp/tsconfig.json')
 	noEmitOnError = true
 	source = new File('src/main/webapp')
+	outputDir = new File('src/main/webapp')
 	}
 task npmClean(type: Delete) {
 	final def webDir = "${rootDir}/src/main/webapp"
@@ -113,3 +114,4 @@ task npmClean(type: Delete) {
 war {
      dependsOn 'compileTypeScript'
 }
+processResources.dependsOn('compileTypeScript')
