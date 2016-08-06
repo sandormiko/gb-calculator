@@ -1,6 +1,8 @@
 language: java
 jdk:
   - oraclejdk8
+before_deploy:
+- gem install mime-types -v 2.6.2
 deploy:
   provider: openshift
   user: rodnas.miko@gmail.com
