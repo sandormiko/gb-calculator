@@ -1,7 +1,6 @@
 language: java
 jdk:
   - oraclejdk8
-script: "gradle build"
 deploy:
   provider: openshift
   user: rodnas.miko@gmail.com
