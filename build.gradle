@@ -1,7 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
-apply plugin: 'war'
+//apply plugin: 'war'
 apply plugin: 'com.moowork.node'
 apply plugin: 'de.richsource.gradle.plugins.typescript'
 
@@ -87,8 +87,8 @@ import com.moowork.gradle.node.variant.VariantBuilder
 
 node {
   download = true
-  workDir = file("${project.projectDir}/src/main/webapp/node")
-  nodeModulesDir = file("${project.projectDir}/src/main/webapp")
+  workDir = file("${project.projectDir}/src/main/resources/static/node")
+  nodeModulesDir = file("${project.projectDir}/src/main/resources/static")
 }
 
 String nodeExecutable() {
@@ -97,12 +97,12 @@ String nodeExecutable() {
 }
 
 compileTypeScript {
-  compilerExecutable "${nodeExecutable()} src/main/webapp/node_modules/typescript/lib/tsc.js"
+  compilerExecutable "${nodeExecutable()} src/main/resources/static/node_modules/typescript/lib/tsc.js"
   	dependsOn "npmInstall"
-  	projectFile = file('src/main/webapp/tsconfig.json')
+  	projectFile = file('src/main/resources/static/tsconfig.json')
 	noEmitOnError = true
-	source = new File('src/main/webapp')
-	outputDir = new File('src/main/webapp')
+	source = new File('src/main/resources/static')
+	outputDir = new File('src/main/resources/static/app')
 	}
 task npmClean(type: Delete) {
 	final def webDir = "${rootDir}/src/main/webapp"
@@ -111,7 +111,5 @@ task npmClean(type: Delete) {
 	delete "${webDir}/typings"
 }
 
-war {
-     dependsOn 'compileTypeScript'
-}
+
 processResources.dependsOn('compileTypeScript')

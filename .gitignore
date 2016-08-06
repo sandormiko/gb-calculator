@@ -1,2 +1,10 @@
 /target/
 .settings/
+/.gradle/
+/build/
+src/main/generated
+node_modules/
+node/
+src/main/resources/static/app/**/*.js
+src/main/resources/static/app/**/*.js.map
+typings/
