@@ -4,6 +4,7 @@ jdk:
 before_deploy:
 - rvm install 2.1.5
 deploy:
+  edge : true
   provider: openshift
   user: rodnas.miko@gmail.com
   password:
