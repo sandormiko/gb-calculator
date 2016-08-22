@@ -1,8 +1,8 @@
 language: java
 jdk:
   - oraclejdk8
-script: "gradle build"
 deploy:
+  edge : true
   provider: openshift
   user: rodnas.miko@gmail.com
   password:
