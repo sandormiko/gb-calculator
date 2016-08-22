@@ -13,7 +13,7 @@ buildscript {
       		url "https://plugins.gradle.org/m2/"
     		}
 	    }
-	   
+
 	    dependencies {
 	        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.2.RELEASE")
 	        classpath "de.richsource.gradle.plugins:typescript-gradle-plugin:1.8.0"
@@ -85,10 +85,12 @@ compileJava {
 import com.moowork.gradle.node.NodeExtension
 import com.moowork.gradle.node.variant.VariantBuilder
 
+def staticDir = "src/main/resources/static";
+
 node {
   download = true
-  workDir = file("${project.projectDir}/src/main/resources/static/node")
-  nodeModulesDir = file("${project.projectDir}/src/main/resources/static")
+  workDir = file("${project.projectDir}/${staticDir}/node")
+  nodeModulesDir = file("${project.projectDir}/${staticDir}")
 }
 
 String nodeExecutable() {
@@ -97,13 +99,16 @@ String nodeExecutable() {
 }
 
 compileTypeScript {
-  compilerExecutable "${nodeExecutable()} src/main/resources/static/node_modules/typescript/lib/tsc.js"
-  	dependsOn "npmInstall"
-  	projectFile = file('src/main/resources/static/tsconfig.json')
+  compilerExecutable "${nodeExecutable()} ${staticDir}/node_modules/typescript/lib/tsc.js"
+  dependsOn "npmInstall"
+  projectFile = file('${staticDir}/tsconfig.json')
 	noEmitOnError = true
-	source = new File('src/main/resources/static')
-	outputDir = new File('src/main/resources/static/app')
-	}
+	source = new File('${staticDir}')
+	outputDir = new File('${staticDir}')
+}
+
+
+
 task npmClean(type: Delete) {
 	final def webDir = "${rootDir}/src/main/webapp"
 	delete "${webDir}/node"
