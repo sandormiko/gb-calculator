@@ -99,12 +99,12 @@ String nodeExecutable() {
 }
 
 compileTypeScript {
-  compilerExecutable "${nodeExecutable()} ${staticDir}/node_modules/typescript/lib/tsc.js"
-  dependsOn "npmInstall"
-  projectFile = file('${staticDir}/tsconfig.json')
+  	compilerExecutable "${nodeExecutable()} ${staticDir}/node_modules/typescript/lib/tsc.js"
+  	dependsOn "npmInstall"
+	projectFile = file("${staticDir}/tsconfig.json")
 	noEmitOnError = true
-	source = new File('${staticDir}')
-	outputDir = new File('${staticDir}')
+	source = new File("${staticDir}")
+	outputDir = new File("${staticDir}")
 }
 
 
