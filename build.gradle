@@ -116,5 +116,10 @@ task npmClean(type: Delete) {
 	delete "${webDir}/typings"
 }
 
+task testJsResources(type: NpmTask) {
+  workingDir = file("${project.projectDir}/${staticDir}")
+  args = ['test']
+}
 
 processResources.dependsOn('compileTypeScript')
+test.dependsOn('testJsResources')
