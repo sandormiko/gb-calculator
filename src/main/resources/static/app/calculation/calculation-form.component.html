@@ -1,32 +1,55 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-3">
-  {{diagnostic}}
-    <h1>Hero Form</h1>
     <form>
-      <div class="form-group">
-        <label for="valueAddedTax">Value added Tax</label>
-        <input type="text" class="form-control" id="valueAddedTax" required [(ngModel)]="model.valueAddedTax" name="valueAddedTax">
-        TODO: remove this: {{model.valueAddedTax}}
-      </div>
-      <div class="form-group">
-        <label for="vatRate">Vat rate</label>
-        <input type="text" class="form-control" id="vatRate" [(ngModel)]="model.vatRate" name="vatRate">
-          TODO: remove this: {{model.vatRate}}
-      </div>
-      <div class="form-group">
-        <label for="priceWoVat">Proce without Vat</label>
-        <input type="text" class="form-control" id="priceWoVat" required [(ngModel)]="model.priceWoVat" name="priceWoVat">
-        TODO: remove this: {{model.priceWoVat}}
-      </div>
-      <div class="form-group">
-        <label for="priceInclVat">Proce including Vat</label>
-        <input type="text" class="form-control" id="priceInclVat" required [(ngModel)]="model.priceInclVat" name="priceInclVat">
-        TODO: remove this: {{model.priceInclVat}}
-      </div>
-    <button type="button" class="btn btn-default" (click)="newCalculation()">New Calculation</button>
-    </form>
-  </div>
+	<div class="panel panel-default">
+	 <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Value added Tax" id="valueAddedTax" required [(ngModel)]="model.valueAddedTax" name="valueAddedTax">
+					  <span class="input-group-addon">VAT</span>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="input-group">
+                   
+                    <select  [(ngModel)]="model.vatRate" name="vatRate" class="form-control">
+						  <option *ngFor="let vatRate of vatRates" value= {{vatRate}}>
+							{{vatRate}} %
+						  </option>
+					</select>
+					<span class="input-group-addon">VR</span>
+			    </div>
+				TODO: remove this: {{model.vatRate}}
+            </div>
+			<div class="col-xs-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Price without Vat" id="priceWoVat" required [(ngModel)]="model.priceWoVat" name="priceWoVat">
+                    <span class="input-group-addon">POV</span>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Price including Vat" id="priceInclVat" required [(ngModel)]="model.priceInclVat" name="priceInclVat">
+                    <span class="input-group-addon"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	</form>
+		 <div class="row">
+		 	<div class="col-md-2 col-md-offset-5">
+			<div class="button group">
+				<button type="button" class="btn btn-success btn-lg" (click)="newCalculation()">Calculate</button>
+			 </div>
+			</div>
+			
+		</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<calculation-result *ngIf="calculationResult" [result]="calculationResult"></calculation-result>
+		</div>
+	</div>
 </div>
-<calculation-result [result]="calculationResult"></calculation-result>
-</div>
+
+

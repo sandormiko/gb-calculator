@@ -1,20 +1,17 @@
-<div class="col-sm-3">
-
-  <div class="form-group">
-    <label for="valueAddedTax">Value added Tax:</label>
-    {{result.valueAddedTax}}
-  </div>
-  <div class="form-group">
-    <label for="vatRate">Vat rate</label>
-    {{result.vatRate}}
-  </div>
-  <div class="form-group">
-    <label for="priceWoVat">Proce without Vat</label>
-    {{result.priceWoVat}}
-  </div>
-  <div class="form-group">
-    <label for="priceInclVat">Proce including Vat</label>
-    {{result.priceInclVat}}
-  </div>
-
-</div>
+ <div class="col-lg-8">
+ <h1>Calculation results</h1>
+ <div class="list-group">
+        <a href="#" class="list-group-item">
+            <span class="glyphicon"></span> Value added Tax: <span class="badge">{{result.valueAddedTax}}</span>
+        </a>
+        <a href="#" class="list-group-item">
+            <span class="glyphicon"></span> Vat rate <span class="badge">{{result.vatRate}}</span>
+        </a>
+        <a href="#" class="list-group-item">
+            <span class="glyphicon"></span> Price without Vat <span class="badge">{{result.priceWoVat}}</span>
+        </a>
+        <a href="#" class="list-group-item">
+            <span class="glyphicon"></span> Price including Vat <span class="badge">{{result.priceInclVat}}</span>
+        </a>
+   </div>
+   </div>

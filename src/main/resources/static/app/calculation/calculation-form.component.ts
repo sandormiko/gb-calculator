@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Calculation} from './calculation';
 import {CalculationService} from './calculation.service';
 import {CalculationResultComponent} from './calculation-result.component';
+import {VatRate} from './vatRate';
 
 @Component({
   selector: 'calculation-form',
@@ -11,20 +12,24 @@ import {CalculationResultComponent} from './calculation-result.component';
 })
 
 export class CalculationFormComponent{
-  constructor(private calculationService: CalculationService){}
-
-  model = new Calculation('', '', '', '');
+  vatRates:Array<VatRate>;
   calculationResult :Calculation;
+  model:Calculation;
   submitted = false;
+  
+  constructor(private calculationService: CalculationService){
+	this.vatRates = [VatRate.FIVE,VatRate.TEN,VatRate.FIFTEEN,VatRate.TWENTY,VatRate.TWENTY_SEVEN];
+	this.model =new Calculation('', '', '', '');
+  }
+  
   onSubmit() { this.submitted = true; }
-// TODO: Remove this when we're done
+
   get diagnostic() { return JSON.stringify(this.model); }
 
   newCalculation(){
     console.log(JSON.stringify(this.model));
 
     this.calculationService.addCalculation(this.model).subscribe(
-
 
       // the first argument is a function which runs on success
       data => { this.calculationResult = new Calculation(data.vatRate,data.valueAddedTax,data.priceWoVat,data.priceInclVat)},
