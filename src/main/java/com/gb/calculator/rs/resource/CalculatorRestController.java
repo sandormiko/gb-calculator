@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,5 +47,17 @@ public class CalculatorRestController {
 		uri.append(request.getQueryString());
 		BadRequest bRequest = new BadRequest(uri.toString(), ex.getMessage());
 		return new ResponseEntity<BadRequest>(bRequest, HttpStatus.BAD_REQUEST);
+	}
+	
+	@RequestMapping(value = "/calculations/", method = RequestMethod.POST, produces = "application/json")
+	public ResponseEntity<CalculationData> calculatee(@RequestBody CalculationValidorInput input) {
+		CalculationData result = null;
+		try {
+			result = facade.validateAndProcess(input);
+
+		} catch (CalculatorBusinessException ex) {
+			throw new CalculatorRsException(ex.getMessage());
+		}
+		return new ResponseEntity<CalculationData>(result, HttpStatus.OK);
 	}
 }

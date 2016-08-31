@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+  {{diagnostic}}
+    <h1>Hero Form</h1>
+    <form>
+      <div class="form-group">
+        <label for="valueAddedTax">Value added Tax</label>
+        <input type="text" class="form-control" id="valueAddedTax" required [(ngModel)]="model.valueAddedTax" name="valueAddedTax">
+        TODO: remove this: {{model.valueAddedTax}}
+      </div>
+      <div class="form-group">
+        <label for="vatRate">Vat rate</label>
+        <input type="text" class="form-control" id="vatRate" [(ngModel)]="model.vatRate" name="vatRate">
+          TODO: remove this: {{model.vatRate}}
+      </div>
+      <div class="form-group">
+        <label for="priceWoVat">Proce without Vat</label>
+        <input type="text" class="form-control" id="priceWoVat" required [(ngModel)]="model.priceWoVat" name="priceWoVat">
+        TODO: remove this: {{model.priceWoVat}}
+      </div>
+      <div class="form-group">
+        <label for="priceInclVat">Proce including Vat</label>
+        <input type="text" class="form-control" id="priceInclVat" required [(ngModel)]="model.priceInclVat" name="priceInclVat">
+        TODO: remove this: {{model.priceInclVat}}
+      </div>
+    <button type="button" class="btn btn-default" (click)="newCalculation()">New Calculation</button>
+    </form>
+  </div>
+</div>
+<calculation-result [result]="calculationResult"></calculation-result>
+</div>
