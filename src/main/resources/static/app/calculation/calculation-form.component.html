@@ -1,55 +1,31 @@
 <div class="container">
-    <form>
-	<div class="panel panel-default">
-	 <div class="panel-body">
-        <div class="row">
-            <div class="col-xs-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Value added Tax" id="valueAddedTax" required [(ngModel)]="model.valueAddedTax" name="valueAddedTax">
-					  <span class="input-group-addon">VAT</span>
-                </div>
+    <div *ngIf="!calculationResult">
+        <h1>Model Driven Form</h1>
+        <form [formGroup]="calculationForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="name">vatRate</label>
+                <select class="form-control" formControlName="vatRate">
+                  <option *ngFor="let vatRate of vatRates" [value]="vatRate">{{vatRate}}%</option>
+                </select>
+                <div class="alert alert-danger" [hidden]="calculationForm.controls.vatRate.valid">Name is required</div>
             </div>
-            <div class="col-xs-3">
-                <div class="input-group">
-                   
-                    <select  [(ngModel)]="model.vatRate" name="vatRate" class="form-control">
-						  <option *ngFor="let vatRate of vatRates" value= {{vatRate}}>
-							{{vatRate}} %
-						  </option>
-					</select>
-					<span class="input-group-addon">VR</span>
-			    </div>
-				TODO: remove this: {{model.vatRate}}
+            <div class="form-group">
+                <label for="alterEgo">valueAddedTax</label>
+                <input type="text" class="form-control" formControlName="valueAddedTax" />
+                <div class="alert alert-danger" [hidden]="calculationForm.controls.valueAddedTax.valid">Alter Ego is required</div>
             </div>
-			<div class="col-xs-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Price without Vat" id="priceWoVat" required [(ngModel)]="model.priceWoVat" name="priceWoVat">
-                    <span class="input-group-addon">POV</span>
-                </div>
+            <div class="form-group">
+                <label for="email">priceInclVat</label>
+                <input type="text" class="form-control" formControlName="priceInclVat" />
+                <div class="alert alert-danger" [hidden]="calculationForm.controls.priceInclVat.valid">Email is required and must be a valid email pattern</div>
             </div>
-            <div class="col-xs-3">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Price including Vat" id="priceInclVat" required [(ngModel)]="model.priceInclVat" name="priceInclVat">
-                    <span class="input-group-addon"></span>
-				</div>
-			</div>
-		</div>
-	</div>
-	</div>
-	</form>
-		 <div class="row">
-		 	<div class="col-md-2 col-md-offset-5">
-			<div class="button group">
-				<button type="button" class="btn btn-success btn-lg" (click)="newCalculation()">Calculate</button>
-			 </div>
-			</div>
-			
-		</div>
-	<div class="row">
-		<div class="col-xs-12">
-			<calculation-result *ngIf="calculationResult" [result]="calculationResult"></calculation-result>
-		</div>
-	</div>
+            <div class="form-group">
+                <label for="power">priceWoVat</label>
+				<input type="text" class="form-control" formControlName="priceWoVat" />
+                <div class="alert alert-danger" [hidden]="calculationForm.controls.priceWoVat.valid">Power is required</div>
+            </div>
+            <button type="submit" class="btn btn-default" [disabled]="!calculationForm.valid">Submit</button> 
+        </form>  
+    </div>
+	
 </div>
-
-

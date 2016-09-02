@@ -1,11 +1,19 @@
 package com.gb.calculator.business.dto;
 
+import java.util.Random;
+
 public class CalculationData {
 
+	private Long id;
 	private Double valueAddedTax;
 	private Double vatRate;
 	private Double priceWoVat;
 	private Double priceInclVat;
+	
+	public CalculationData(){
+		Random r = new Random(); 
+		id = r.nextLong();
+	}
 	public Double getValueAddedTax() {
 		return valueAddedTax;
 	}
@@ -29,6 +37,9 @@ public class CalculationData {
 	}
 	public void setPriceInclVat(Double priceInclVat) {
 		this.priceInclVat = priceInclVat;
+	}
+	public Long getId() {
+		return id;
 	}
 	
 }

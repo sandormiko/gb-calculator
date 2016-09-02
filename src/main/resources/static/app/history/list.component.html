@@ -1,0 +1,14 @@
+<div class="table-responsive">
+         <table class="table table-striped">
+             <thead>
+               <tr>
+                  <th>{{title}}</th>
+               </tr>
+            </thead>
+           <tbody>
+				<tr *ngFor="let calculation of calculations">
+				  <td>{{calculation.vatRate}}</td>
+				</tr>
+			</tbody>
+         </table>
+</div>

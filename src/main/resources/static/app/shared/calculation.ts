@@ -5,5 +5,6 @@ constructor(
   public vatRate: string,
   public valueAddedTax?: string,
   public priceWoVat?: string,
-  public priceInclVat?: string)  {}
+  public priceInclVat?: string,
+  public id?:number)  {}
 }

@@ -1,9 +1,12 @@
+
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>Angular 2 QuickStart</title>
+<head>
+    <base href="/">
+    <title>Vat calculator</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles/styles.css">
     <link rel="stylesheet"
       href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <!-- 1. Load libraries -->
@@ -18,30 +21,17 @@
       System.import('app').catch(function(err){ console.error(err); });
     </script>
   </head>
-  <!-- 3. Display the application -->
-  <body>
-	<nav class = "navbar navbar-default" role = "navigation">
-   
-   <div class = "navbar-header">
-      <a class = "navbar-brand" href = "#">MS</a>
-   </div>
-   
-  
-   
-</nav>
- <header>
-			<div class="container">
-			<div class="row">
-			<div class="col-md-2 col-md-offset-3"></div>
-			<img src="http://icons.iconarchive.com/icons/wwalczyszyn/android-style-honeycomb/128/Calculator-icon.png" alt="TWBSColor">
-		</div>
-				
-				
-			</div>
-		</header>
+<body>
+    <div class="container">
+        <app-container>
+            Loading...
+        </app-container>
+        <br /><br />
+    </div>
 
+   	<!-- add for bundle usage -->
+	<!-- <script src="dist/bundle.min.js"></script> -->
+	<!-- add for bundle usage -->
 
-
-    <my-app>Loading...</my-app>
-  </body>
+</body>
 </html>

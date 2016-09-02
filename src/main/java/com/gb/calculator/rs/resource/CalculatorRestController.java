@@ -28,18 +28,6 @@ public class CalculatorRestController {
 		this.facade = aFacade;
 	}
 
-	@RequestMapping(value = "/calculations/", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity<CalculationData> calculate(CalculationValidorInput input) {
-		CalculationData result = null;
-		try {
-			result = facade.validateAndProcess(input);
-
-		} catch (CalculatorBusinessException ex) {
-			throw new CalculatorRsException(ex.getMessage());
-		}
-		return new ResponseEntity<CalculationData>(result, HttpStatus.OK);
-	}
-
 	@ExceptionHandler(CalculatorRsException.class)
 	public ResponseEntity<BadRequest> handleCalculatorRsException(HttpServletRequest request,
 			CalculatorRsException ex) {
@@ -50,7 +38,7 @@ public class CalculatorRestController {
 	}
 	
 	@RequestMapping(value = "/calculations/", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity<CalculationData> calculatee(@RequestBody CalculationValidorInput input) {
+	public ResponseEntity<CalculationData> calculate(@RequestBody CalculationValidorInput input) {
 		CalculationData result = null;
 		try {
 			result = facade.validateAndProcess(input);
