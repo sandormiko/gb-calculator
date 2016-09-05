@@ -1,7 +1,7 @@
 {
   "name": "vat",
 
-  "version": "1.0.0.",
+  "version": "1.0.0",
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server",
