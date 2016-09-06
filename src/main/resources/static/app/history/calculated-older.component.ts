@@ -19,9 +19,9 @@ export class CalculatedOlderComponent implements OnInit {
 
     ngOnInit() {
         this.historyService.getCalculations().subscribe(
-    data => {
+            data => {
                 this.calculations = data;
-            },
+            }
         );
     }
 

@@ -20,9 +20,6 @@ describe('CalculationServiceTest', () => {
                 deps: [MockBackend, BaseRequestOptions]
             },
             , CalculationService]);
-        inject([CalculationService], (cService: CalculationService) => {
-            this.service = cService;
-        })
     });
 
     beforeEach(inject([CalculationService, MockBackend], (cService: CalculationService, mBackend: MockBackend) => {
