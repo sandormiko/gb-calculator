@@ -1,7 +1,7 @@
 {
-  "name": "angular2-forms",
-  "author": "Dan Wahlin",
-  "version": "0.8.0",
+  "name": "vat",
+
+  "version": "1.0.0",
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server",
@@ -38,6 +38,13 @@
     "lite-server": "^2.2.0",
     "typescript": "1.8.10",
     "typings": "^1.0.4",
-    "yargs": "^4.8.1"
+    "yargs": "^4.8.1",
+    "chai": "3.2.0",
+     "mocha": "2.3.2",
+     "jasmine-core": "^2.5.0",
+    "karma": "^1.2.0",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.2"
   }
 }
