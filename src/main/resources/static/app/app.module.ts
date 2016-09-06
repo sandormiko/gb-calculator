@@ -16,12 +16,12 @@ import { SavedTodayComponent } from './history/saved-today.component';
 import {CalculationFormComponent} from './calculation/calculation-form.component';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, app_routing ],
-  declarations: [ AppComponent,
-				CalculationFormComponent,CalculationResultComponent,CalculationHistoryComponent,
-				CalculatedTodayComponent,CalculatedOlderComponent,
-				SavedOlderComponent,SavedTodayComponent],
-  providers: 	[HTTP_PROVIDERS,CalculationService,HistoryService],
-  bootstrap:    [ AppComponent ]
+    imports: [BrowserModule, FormsModule, ReactiveFormsModule, app_routing],
+    declarations: [AppComponent,
+        CalculationFormComponent, CalculationResultComponent, CalculationHistoryComponent,
+        CalculatedTodayComponent, CalculatedOlderComponent,
+        SavedOlderComponent, SavedTodayComponent],
+    providers: [HTTP_PROVIDERS, CalculationService, HistoryService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

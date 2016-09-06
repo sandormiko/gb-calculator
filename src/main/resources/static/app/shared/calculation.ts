@@ -1,10 +1,10 @@
-export class Calculation{
+export class Calculation {
 
 
-constructor(
-  public vatRate: string,
-  public valueAddedTax?: string,
-  public priceWoVat?: string,
-  public priceInclVat?: string,
-  public id?:number)  {}
+    constructor(
+        public vatRate: string,
+        public valueAddedTax?: string,
+        public priceWoVat?: string,
+        public priceInclVat?: string,
+        public id?: number) { }
 }

@@ -9,7 +9,7 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "typings": "typings",
-    "test": "mocha test/**"
+    "test": "karma start config/karma.conf.js  --single-run"
   },
   "license": "ISC",
   "dependencies": {
@@ -29,12 +29,15 @@
     "zone.js": "^0.6.12"
   },
   "devDependencies": {
-    "concurrently": "^2.0.0",
+  "concurrently": "^2.0.0",
+    "jasmine-core": "^2.5.0",
+    "karma": "^1.2.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-chrome-launcher": "0.2.2",
     "lite-server": "^2.2.0",
     "typescript": "1.8.10",
     "typings": "^1.0.4",
-    "yargs": "^4.8.1",
-    "chai": "3.2.0",
-     "mocha": "2.3.2"
+    "yargs": "^4.8.1"
   }
 }
