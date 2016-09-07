@@ -28,7 +28,7 @@ describe('CalculationServiceTest', () => {
     }));
 
 
-    it('#isLoggedIn should return false after creation', (done) => {
+    it('#should return a valid calculation', (done) => {
         let result = Observable.of(new Calculation('1', '2', '2', '2'));
         backend.connections.subscribe((connection: MockConnection) => {
             let options = new ResponseOptions({
