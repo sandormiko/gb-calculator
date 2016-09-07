@@ -8,8 +8,7 @@ module.exports = function(config) {
 
         files: [
             // Polyfills.
-            'node_modules/es6-shim/es6-shim.js',
-
+            'node_modules/core-js/client/shim.min.js',
             'node_modules/reflect-metadata/Reflect.js',
 
             // System.js for module loading
@@ -96,8 +95,8 @@ module.exports = function(config) {
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
-        autoWatch: true,
-        browsers: ['Chrome'],
+        autoWatch: false,
+        browsers: ['PhantomJS'],
         singleRun: true,
         customLaunchers: {
             Chrome_travis_ci: {
