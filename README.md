@@ -14,6 +14,6 @@ Execute Jasmine and JUnit test
 	gradle check
 Run
 ---
-	gradle bootrun
+	gradle bootRun
 	
 navigate to localhost:8000
