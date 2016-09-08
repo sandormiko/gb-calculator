@@ -1,4 +1,4 @@
 # gb-calculator
-Publishing a Value Added Tax calculation function via SOAP and Rest interfaces on the top of Spring MVC.
+VAT calculation app with Spring Boot, Angular2, TypeScript, Karma, Jasmine.
 
 ![Build status](https://travis-ci.org/sandormiko/gb-calculator.svg?branch=master)
