@@ -8,7 +8,7 @@
     "tsc:w": "tsc -w",
     "typings": "typings",
     "test": "karma start config/karma.conf.js",
-    "build": "webpack",
+    "build": "webpack --progress",
     "start": "webpack-dev-server"
   },
   "license": "ISC",
@@ -37,6 +37,8 @@
     "karma-chrome-launcher": "0.2.2",
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.2",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^1.8.0",
     "resolve-url-loader": "^1.6.0",
     "style-loader": "^0.13.1",
     "ts-loader": "^0.8.2",

@@ -55,6 +55,7 @@ sourceSets {
         resources {
             exclude '**/node_modules/*'
             exclude '**/node/*'
+	    exclude '**/typings/*'
         }
     }
 }
@@ -123,7 +124,7 @@ task npmClean(type: Delete) {
 	delete "${webDir}/typings"
 }
 
-task testJsResources(type: NpmTask) {
+task npmTest(type: NpmTask) {
   workingDir = file("${project.projectDir}/${staticDir}")
   args = ['test']
 }
@@ -135,4 +136,4 @@ task buildWebpack(type: NpmTask) {
 
 buildWebpack.dependsOn('compileTypeScript')
 processResources.dependsOn('buildWebpack')
-test.dependsOn('testJsResources')
+test.dependsOn('npmTest')
