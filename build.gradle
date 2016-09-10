@@ -50,7 +50,14 @@ dependencies {
 
 
 
-
+sourceSets {
+    main {
+        resources {
+            exclude '**/node_modules/*'
+            exclude '**/node/*'
+        }
+    }
+}
 
 task wsimport {
     ext.destDir = file("${projectDir}/src/main/generated")
@@ -121,5 +128,11 @@ task testJsResources(type: NpmTask) {
   args = ['test']
 }
 
-processResources.dependsOn('compileTypeScript')
+task buildWebpack(type: NpmTask) {
+  workingDir = file("${project.projectDir}/${staticDir}")
+  args = ['run','build']
+}
+
+buildWebpack.dependsOn('compileTypeScript')
+processResources.dependsOn('buildWebpack')
 test.dependsOn('testJsResources')
