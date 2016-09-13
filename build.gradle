@@ -103,10 +103,6 @@ String nodeExecutable() {
   return new VariantBuilder(nodeExt).build().nodeExec
 }
 
-task npmInstall(type: NpmTask) {
-  workingDir = file("${project.projectDir}/${staticDir}")
-  args = ['run install']
-}
 
 task compileTypeScript(type: NpmTask){
   workingDir = file("${project.projectDir}/${staticDir}")
