@@ -103,6 +103,11 @@ String nodeExecutable() {
   return new VariantBuilder(nodeExt).build().nodeExec
 }
 
+task npmInstall(type: NpmTask) {
+  workingDir = file("${project.projectDir}/${staticDir}")
+  args = ['run install']
+}
+
 task compileTypeScript(type: NpmTask){
   workingDir = file("${project.projectDir}/${staticDir}")
   args = ['run tsc']
@@ -125,6 +130,7 @@ task buildWebpack(type: NpmTask) {
   args = ['run build']
 }
 
+compileTypeScript.dependsOn('npmInstall')
 buildWebpack.dependsOn('compileTypeScript')
 processResources.dependsOn('buildWebpack')
 test.dependsOn('npmTest')
