@@ -1,9 +1,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
-//apply plugin: 'war'
 apply plugin: 'com.moowork.node'
-apply plugin: 'de.richsource.gradle.plugins.typescript'
 
 buildscript {
 	    repositories {
@@ -15,8 +13,7 @@ buildscript {
 	    }
 
 	    dependencies {
-	        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.2.RELEASE")
-	        classpath "de.richsource.gradle.plugins:typescript-gradle-plugin:1.8.0"
+	        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE")
 	        classpath "com.moowork.gradle:gradle-node-plugin:0.12"
 
 	    }
@@ -106,16 +103,10 @@ String nodeExecutable() {
   return new VariantBuilder(nodeExt).build().nodeExec
 }
 
-compileTypeScript {
-  	compilerExecutable "${nodeExecutable()} ${staticDir}/node_modules/typescript/lib/tsc.js"
-  	dependsOn "npmInstall"
-	projectFile = file("${staticDir}/tsconfig.json")
-	noEmitOnError = true
-	source = new File("${staticDir}")
-	outputDir = new File("${staticDir}")
+task compileTypeScript(type: NpmTask){
+  workingDir = file("${project.projectDir}/${staticDir}")
+  args = ['run tsc']
 }
-
-
 
 task npmClean(type: Delete) {
 	final def webDir = "${rootDir}/src/main/webapp"
@@ -126,12 +117,12 @@ task npmClean(type: Delete) {
 
 task npmTest(type: NpmTask) {
   workingDir = file("${project.projectDir}/${staticDir}")
-  args = ['test']
+  args = ['run test']
 }
 
 task buildWebpack(type: NpmTask) {
   workingDir = file("${project.projectDir}/${staticDir}")
-  args = ['run','build']
+  args = ['run build']
 }
 
 buildWebpack.dependsOn('compileTypeScript')
