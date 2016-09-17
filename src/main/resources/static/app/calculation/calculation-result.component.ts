@@ -11,7 +11,7 @@ import {Router, ActivatedRoute}       from '@angular/router';
 
 export class CalculationResultComponent implements OnInit {
 
-    result: Calculation;
+    result: Calculation = null;
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -19,10 +19,12 @@ export class CalculationResultComponent implements OnInit {
 
 
     ngOnInit() {
+      //this.result = new Calculation('','','','');
         this.route.params.subscribe(params => {
             let id = +params['id']; // (+) converts string 'id' to a number
-            this.service.getCalculation(id).subscribe(data => this.result = data);
-        });
+            this.service.getCalculation(id).subscribe(data => {this.result = data;console.log(data)});
+        },err => console.error(err),
+        () => console.log('done loading calculation by id'));
     }
 
     back() {

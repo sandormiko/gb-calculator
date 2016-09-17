@@ -17,18 +17,14 @@ export class CalculationService {
 
         return this.http.post(this.calculationsUrl, calculation, options).
             map((res: Response) => res.json());
-
-
     }
 
     getCalculation(calculationId: number): Observable<Calculation> {
         let body = JSON.stringify({ calculationId });
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        console.log('addCalculation ', body);
-        const mockCalculation = new Calculation('11111', '22222', '322222', '444444', 22);
-        return Observable.of(mockCalculation);
-
-
+        return this.http.get(this.calculationsUrl+calculationId).
+                  map((res: Response) => res.json());
+    
     }
 }

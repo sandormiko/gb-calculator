@@ -20,7 +20,7 @@ module.exports = {
         loaders: [{
             test: /\.ts/,
             loaders: ['ts-loader'],
-            exclude: 'node_modules'
+            exclude: [/node_modules/],
         }, {
             test: /\.css$/,
             loader: "style!css"

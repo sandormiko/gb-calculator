@@ -1,30 +1,32 @@
 <div class="container">
-    <div *ngIf="!calculationResult">
-        <h1>Model Driven Form</h1>
+    <div class="alert alert-danger" *ngIf="!calculationForm.valid && submitted">
+        <ul *ngFor="let msg of validationMessages">
+            <li>{{msg}}</li>
+        </ul>
+    </div>
+    <div>
+        <h1>Calculation Form</h1>
         <form [formGroup]="calculationForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="name">vatRate</label>
                 <select class="form-control" formControlName="vatRate">
-                  <option *ngFor="let vatRate of vatRates" [value]="vatRate">{{vatRate}}%</option>
+                    <option  value="-1">No vat rate is selected</option>
+                    <option *ngFor="let vatRate of vatRates" [value]="vatRate">{{vatRate}}%</option>
                 </select>
-                <div class="alert alert-danger" [hidden]="calculationForm.controls.vatRate.valid">Name is required</div>
             </div>
             <div class="form-group">
-                <label for="alterEgo">valueAddedTax</label>
+                <label for="valueAddedTax">valueAddedTax</label>
                 <input type="text" class="form-control" formControlName="valueAddedTax" />
-                <div class="alert alert-danger" [hidden]="calculationForm.controls.valueAddedTax.valid">Alter Ego is required</div>
             </div>
             <div class="form-group">
-                <label for="email">priceInclVat</label>
+                <label for="priceInclVat">priceInclVat</label>
                 <input type="text" class="form-control" formControlName="priceInclVat" />
-                <div class="alert alert-danger" [hidden]="calculationForm.controls.priceInclVat.valid">Email is required and must be a valid email pattern</div>
             </div>
             <div class="form-group">
-                <label for="power">priceWoVat</label>
+                <label for="priceWoVat">priceWoVat</label>
                 <input type="text" class="form-control" formControlName="priceWoVat" />
-                <div class="alert alert-danger" [hidden]="calculationForm.controls.priceWoVat.valid">Power is required</div>
             </div>
-            <button type="submit" class="btn btn-default" [disabled]="!calculationForm.valid">Submit</button>
+            <button type="submit" class="btn btn-default">Submit</button>
         </form>
     </div>
 

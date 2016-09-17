@@ -2,6 +2,7 @@ package com.gb.calculator.business.service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,8 @@ import com.gb.calculator.business.dto.CalculationData;
 @Service
 public class CalculatorServiceBean {
 
+	private ConcurrentHashMap<Long, CalculationData> cache = new ConcurrentHashMap<>();
+	
 	public CalculationData calculate(CalculationData calculation) {
 
 		CalculationData result = new CalculationData();
@@ -40,6 +43,8 @@ public class CalculatorServiceBean {
 			result.setPriceWoVat(to2FractionDigits(priceWoVat));
 
 		}
+		result.setId(Long.valueOf(cache.size()+1));
+		cache.put(result.getId(), result);
 		return result;
 
 	}
@@ -48,5 +53,9 @@ public class CalculatorServiceBean {
 		BigDecimal bd = new BigDecimal(value);
 		bd = bd.setScale(2, RoundingMode.HALF_UP);
 		return bd.doubleValue();
+	}
+	
+	public CalculationData find(Long id){
+		return cache.get(id);
 	}
 }

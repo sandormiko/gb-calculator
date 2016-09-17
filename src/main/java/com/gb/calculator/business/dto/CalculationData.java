@@ -1,7 +1,5 @@
 package com.gb.calculator.business.dto;
 
-import java.util.Random;
-
 public class CalculationData {
 
 	private Long id;
@@ -11,8 +9,7 @@ public class CalculationData {
 	private Double priceInclVat;
 	
 	public CalculationData(){
-		Random r = new Random(); 
-		id = r.nextLong();
+		
 	}
 	public Double getValueAddedTax() {
 		return valueAddedTax;
@@ -40,6 +37,9 @@ public class CalculationData {
 	}
 	public Long getId() {
 		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }

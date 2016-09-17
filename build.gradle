@@ -104,10 +104,13 @@ String nodeExecutable() {
 }
 
 
-task compileTypeScript(type: NpmTask){
-  workingDir = file("${project.projectDir}/${staticDir}")
-  args = ['run tsc']
+task compileTypeScript(type: NodeTask){
+    script = file("${staticDir}/node_modules/typescript/lib/tsc.js")
+    execOverrides {
+        it.workingDir = file("${project.projectDir}/${staticDir}")
+    } 
 }
+
 
 task npmClean(type: Delete) {
 	final def webDir = "${rootDir}/src/main/webapp"
@@ -118,12 +121,12 @@ task npmClean(type: Delete) {
 
 task npmTest(type: NpmTask) {
   workingDir = file("${project.projectDir}/${staticDir}")
-  args = ['run test']
+  args = ['run', 'test']
 }
 
 task buildWebpack(type: NpmTask) {
   workingDir = file("${project.projectDir}/${staticDir}")
-  args = ['run build']
+  args = ['run', 'build']
 }
 
 compileTypeScript.dependsOn('npmInstall')

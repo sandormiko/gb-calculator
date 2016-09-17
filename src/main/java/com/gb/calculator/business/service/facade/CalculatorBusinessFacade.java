@@ -56,4 +56,8 @@ public class CalculatorBusinessFacade {
 		result.setVatRate(Double.valueOf(calc.getVatRate()));
 		return result;
 	}
+	
+	public CalculationData find(Long id){
+		return serviceBean.find(id);
+	}
 }

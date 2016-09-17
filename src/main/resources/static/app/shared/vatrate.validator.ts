@@ -1,14 +1,14 @@
-import { Control } from '@angular/common';
+import { FormControl } from '@angular/forms';
 
 export class VatRateValidator {
-     
-    static validate(control:Control): any {
-        
-            let vatRate = control.value;
-			if(vatRate === '' || vatRate === -1){
-				return {noVatRateGiven :true};
-			}
-            return null;
+
+    static validate(control: FormControl): any {
+
+        let vatRate = control.value;
+        if (vatRate === '' || vatRate === -1) {
+            return { noVatRateGiven: true };
+        }
+        return null;
     }
 
 }

@@ -1,4 +1,4 @@
-import { addProviders, inject } from '@angular/core/testing';
+import { inject, TestBed } from '@angular/core/testing';
 import { CalculationService } from '../../app/calculation/calculation.service';
 import { Http, BaseRequestOptions, Response, ResponseOptions, RequestMethod } from '@angular/http';
 import { Observable }     from 'rxjs/Rx';
@@ -10,18 +10,19 @@ describe('CalculationServiceTest', () => {
     let backend: MockBackend;
 
     beforeEach(() => {
-        addProviders([MockBackend,
-            BaseRequestOptions,
-            {
-                provide: Http,
-                useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
-                    return new Http(backendInstance, defaultOptions);
+        TestBed.configureTestingModule({
+            providers: [MockBackend,
+                BaseRequestOptions,
+                {
+                    provide: Http,
+                    useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
+                        return new Http(backendInstance, defaultOptions);
+                    },
+                    deps: [MockBackend, BaseRequestOptions]
                 },
-                deps: [MockBackend, BaseRequestOptions]
-            },
-            , CalculationService]);
+                , CalculationService]
+        });
     });
-
     beforeEach(inject([CalculationService, MockBackend], (cService: CalculationService, mBackend: MockBackend) => {
         service = cService;
         backend = mBackend;
@@ -39,6 +40,7 @@ describe('CalculationServiceTest', () => {
         service.addCalculation(new Calculation('1', '2', '2', '2')).subscribe(
             data => {
                 expect(JSON.stringify(data)).toEqual(JSON.stringify(result));
+                expect(1).toBe(1);
                 done();
             });
     });

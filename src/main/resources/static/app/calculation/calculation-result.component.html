@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" *ngIf="result">
     <h2>Calculation result</h2>
     <div class="row">
         <div class="col-md-2">Vat Rate</div>
-        <div class="col-md-10 pull-right ">{{ result.vatRate }}</div>
+        <div class="col-md-10 pull-right ">{{ result.vatRate }} %</div>
     </div>
     <div class="row">
         <div class="col-md-2">Value Added Tax</div>
